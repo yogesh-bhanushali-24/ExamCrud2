@@ -1,0 +1,95 @@
+<form novalidate #form="ngForm" (submit)="onSubmit(form)">
+    <input type="hidden" name="id" #id="ngModel" [ngModel]="service.CompanyDetailsForm.id"  />
+
+    
+
+    <label for="client">Client</label>
+    <div *ngIf="clientId.invalid && (clientId.touched || clientId.dirty)" class="float-right">
+        <p class="text-danger">client Required</p>
+    </div>
+
+    <label for="">Client</label>
+    <select class="form-select" name="clientId" #clientId="ngModel" [(ngModel)]="service.CompanyDetailsForm.clientId" required>
+        <option  selected>Select Client</option>
+        <option  [value]="client.id" *ngFor="let client of service.listClients">{{client.clientName}}</option>
+    </select>
+
+
+  <div class="form-group">
+        <label for="name">projectName</label>
+        <div *ngIf="name.invalid && (name.touched || name.dirty)" class="float-right">
+            <p class="text-danger">projectName Required</p>
+        </div>
+        <input class="form-control form-control-lg" type="text" name="projectName" placeholder="Enter Your projectName" #name="ngModel" [(ngModel)]="service.CompanyDetailsForm.projectName"  required=""/>
+    </div>
+
+
+
+
+    <label for="matterTypeId">MatterType</label>
+    <div *ngIf="matterTypeId.invalid && (matterTypeId.touched || matterTypeId.dirty)" class="float-right">
+        <p class="text-danger">client Required</p>
+    </div>
+
+    <label for="">MatterType</label>
+    <select class="form-select" name="matterTypeId" #matterTypeId="ngModel" [(ngModel)]="service.CompanyDetailsForm.matterTypeId" required>
+        <option  selected>Select Client</option>
+        <option  [value]="client.id" *ngFor="let client of service.listmatterType">{{client.matterTypeName}}</option>
+    </select>
+
+
+
+
+    <label for="billingTermsId">billingTerm</label>
+    <div *ngIf="billingTermsId.invalid && (billingTermsId.touched || billingTermsId.dirty)" class="float-right">
+        <p class="text-danger">client Required</p>
+    </div>
+
+    <label for="">billingTerm</label>
+    <select class="form-select" name="billingTermsId" #billingTermsId="ngModel" [(ngModel)]="service.CompanyDetailsForm.billingTermsId" required>
+        <option  selected>Select Client</option>
+        <option  [value]="client.id" *ngFor="let client of service.listbillingTerm">{{client.billingTermsName}}</option>
+    </select>
+
+    
+
+
+
+    <label for="invoiceTypeId">invoiceType</label>
+    <div *ngIf="invoiceTypeId.invalid && (invoiceTypeId.touched || invoiceTypeId.dirty)" class="float-right">
+        <p class="text-danger">client Required</p>
+    </div>
+
+    <label for="">Client</label>
+    <select class="form-select" name="invoiceTypeId" #invoiceTypeId="ngModel" [(ngModel)]="service.CompanyDetailsForm.invoiceTypeId" required>
+        <option  selected>Select Client</option>
+        <option  [value]="client.id" *ngFor="let client of service.listinvoiceType">{{client.invoiceTypeName}}</option>
+    </select>
+
+
+
+    <label for="description">description</label>
+    <div *ngIf="description.invalid && (description.touched || description.dirty)" class="float-right">
+        <p class="text-danger">description Required</p>
+    </div>
+    <div class="form-group">
+        <input class="form-control form-control-lg" type="text" name="description" placeholder="Enter Your description" #description="ngModel" [(ngModel)]="service.CompanyDetailsForm.description"  required=""/>
+    </div>
+
+    <label>invoiceable</label>
+    <div class="form-group">
+        <input type="radio" value=1 name="invoiceable" #invoiceable="ngModel" [(ngModel)]="service.CompanyDetailsForm.invoiceable" /> Yes
+        <input type="radio" value=2 name="invoiceable" #invoiceable="ngModel" [(ngModel)]="service.CompanyDetailsForm.invoiceable"  /> No
+    </div>
+  
+   
+
+  
+    
+    
+    <div class="form-group mt-2 mb-2">
+        <button class="btn btn-primary  btn- btn-block w-100 text-white" [ngStyle]="{
+            'background-color' : this.service.CompanyDetailsForm.id==0? 'blue' : 'orange'
+          }" type="submit" [disabled]="form.invalid" >{{this.service.CompanyDetailsForm.id==0?"Create":"Update"}}</button>
+    </div>
+    </form>

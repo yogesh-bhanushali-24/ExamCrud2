@@ -1,0 +1,53 @@
+<div class="container">
+
+    
+    <app-company-details-form></app-company-details-form>
+
+        
+    <nav class="navbar">
+        <input class="form-control" type="text" name="Searchname" [(ngModel)]="Searchname"  (ngModelChange)="Search()" placeholder="Search Client/BillingTerms/Invoicetype" />
+    </nav>
+    <table class="table table-striped mt-2">
+        <thead class="thead-light">
+            <tr>
+                <th (click)="sort('clientName')">Client&nbsp;<i class="{{(key=='clientName'?(reverse)?'fa fa-sort-up':'fa fa-sort-down':'fa fa-sort')}} "></i></th>
+                <th>projectName</th>
+                <th (click)="sort('matterTypeName')">matterType&nbsp;<i class="{{(key=='matterTypeName'?(reverse)?'fa fa-sort-up':'fa fa-sort-down':'fa fa-sort')}} "></i></th>
+                <th (click)="sort('billingTermsName')">billingTerms&nbsp;<i class="{{(key=='billingTermsName'?(reverse)?'fa fa-sort-up':'fa fa-sort-down':'fa fa-sort')}} "></i></th>
+                <th (click)="sort('invoiceTypeName')">invoiceType&nbsp;<i class="{{(key=='invoiceTypeName'?(reverse)?'fa fa-sort-up':'fa fa-sort-down':'fa fa-sort')}} "></i></th>
+                <th>description</th>
+                <th>invoiceable</th>
+              
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pd of service.listCompanyDetails | orderBy: key: reverse" >
+                
+              <td>{{pd.clientName}}</td>
+              <td>{{pd.projectName}}</td>
+              <td>{{pd.matterTypeName}}</td>
+              <td>{{pd.billingTermsName}}</td>
+              <td>{{pd.invoiceTypeName}}</td>
+              <td>{{pd.description}}</td>
+              <td>{{pd.invoiceable == 1?"Yes":"No"}}</td>
+            
+              
+                
+                <td>
+                  <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)" ></i>
+                </td>
+                <td>
+                    <a data-bs-toggle="collapse" href="#collapseExample" aria-controls="collapseExample"> <i class="fa fa-edit mr-2" aria-hidden="true" (click)="populateForm(pd)"></i></a> 
+                    
+                    
+                </td>
+               
+    
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    
+    
